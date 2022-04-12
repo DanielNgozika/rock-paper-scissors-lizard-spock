@@ -1,3 +1,7 @@
 * {
   box-sizing: border-box;
 }
+
+:root {
+  --primary-color: #15133b;
+}
