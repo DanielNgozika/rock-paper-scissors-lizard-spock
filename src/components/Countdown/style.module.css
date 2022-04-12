@@ -1,0 +1,13 @@
+.countdown {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.timer {
+	font-size: 1rem;
+	font-weight: 600;
+	transition: transform 1s linear reverse;
+	transform: scale(2);
+}
