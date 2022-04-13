@@ -7,42 +7,35 @@ function App() {
 	const [countdown, setCountdown] = useState(5);
 	const [countdownRunning, setCountdownRunning] = useState(false);
 
-	const hideSplashScreen = () =>
-		setTimeout(() => {
+	// Show the splash screen for 5 seconds
+	useEffect(() => {
+		const splashScreenTimer = window.setTimeout(() => {
 			setSplashScreenShowing(false);
 		}, 5000);
 
-	const handleCountdown = () =>
-		setInterval(() => {
-			console.log(`---counting---`);
-			setCountdown((countdown) => countdown - 1);
-		}, 1000);
-
-	useEffect(() => {
-		hideSplashScreen();
-
-		return () => {
-			clearTimeout(hideSplashScreen);
-		};
+		return () => window.clearTimeout(splashScreenTimer);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	// Start the countdown
 	useEffect(() => {
+		if (splashScreenShowing && !countdownRunning) {
+			return;
+		}
+		const handleCountdown = window.setInterval(() => {
+			setCountdown((countdown) => countdown - 1);
+		}, 1000);
+
 		if (countdown === 0) {
 			setCountdownRunning(false);
 			clearInterval(handleCountdown);
 		}
 
-		if (!splashScreenShowing && countdownRunning) {
-			handleCountdown();
-		}
-
-		return () => {
-			clearInterval(handleCountdown);
-		};
+		return () => window.clearInterval(handleCountdown);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [countdown, splashScreenShowing, countdownRunning]);
 
+	// Show the countdown
 	useEffect(() => {
 		if (!splashScreenShowing) {
 			setCountdownRunning(true);
