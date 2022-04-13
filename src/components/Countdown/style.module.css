@@ -8,6 +8,15 @@
 .timer {
 	font-size: 1rem;
 	font-weight: 600;
-	transition: transform 1s linear reverse;
-	transform: scale(2);
+	font-family: 'Playfair Display', serif;
+	animation: scale 1s infinite reverse;
+}
+
+@keyframes scale {
+	0% {
+		transform: scale(1);
+	}
+	100% {
+		transform: scale(8);
+	}
 }
